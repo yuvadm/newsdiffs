@@ -17,8 +17,8 @@ WEBAPP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.dirname(WEBAPP_ROOT)+'/newsdiffs.db',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'newsdiffs',
     }
 }
 
@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
 )
 
-ROOT_URLCONF = 'website.urls'
+ROOT_URLCONF = 'newsdiffs.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -84,5 +84,5 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'south',
-    'frontend',
+    'newsdiffs.frontend',
 )

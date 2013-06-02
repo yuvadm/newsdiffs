@@ -13,10 +13,10 @@ ROOT_DIR = os.path.dirname(THIS_DIR)
 urlpatterns = patterns('',
     # Example:
    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': ROOT_DIR+'/website/static',
+            'document_root': ROOT_DIR+'/newsdiffs/static',
         }, name='static'),
   url(r'^(assets/ico/)?favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico')),
-   (r'^', include('website.frontend.urls')),
+   (r'^', include('newsdiffs.frontend.urls')),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

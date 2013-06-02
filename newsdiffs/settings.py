@@ -1,6 +1,8 @@
 # Django settings for newsdiffer project.
 
-DEBUG = False
+import os.path
+
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -11,31 +13,15 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+WEBAPP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-for line in open('/mit/ecprice/.my.cnf').read().split():
-    if line.startswith('password='):
-        pwd = line.split('=')[1]
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'sql.mit.edu',
-        'NAME': 'ecprice+newsdiffs',
-        'USER': 'ecprice',
-        'PASSWORD': pwd,
-        'OPTIONS': {
-# This doesn't seem to work.
-#            'read_default_file': '/mit/ecprice/.my.cnf',
-        },
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'newsdiffs',
     }
 }
 
-if False: #django 1.3
-    DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-    DATABASE_NAME = 'ecprice+newsdiffs'             # Or path to database file if using sqlite3.
-    DATABASE_USER = 'ecprice'             # Not used with sqlite3.
-    DATABASE_PASSWORD = pwd         # Not used with sqlite3.
-    DATABASE_HOST = 'sql.mit.edu'             # Set to empty string for localhost. Not used with sqlite3.
-    DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -43,8 +29,6 @@ if False: #django 1.3
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
 TIME_ZONE = 'America/New_York'
-
-DATETIME_FORMAT = 'F j, Y, g:i a'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -87,7 +71,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
 )
 
-ROOT_URLCONF = 'website.urls'
+ROOT_URLCONF = 'newsdiffs.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -100,12 +84,5 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'south',
-    'frontend',
+    'newsdiffs.frontend',
 )
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'cache_table',
-    }
-}

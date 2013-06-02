@@ -1,6 +1,0 @@
-RewriteEngine On
-RewriteRule ^static - [L]
-RewriteRule ^images - [L]
-RewriteRule ^styles - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ mysite.fcgi/$1 [QSA,L]
